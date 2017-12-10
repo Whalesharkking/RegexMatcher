@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Regex-Matcher</string>
+    <string name="regexString">Regular-Expression</string>
+    <string name="textString">Text</string>
+    <string name="flagString">Flags</string>
+    <string name="CheckButtonText">Check</string>
 </resources>
