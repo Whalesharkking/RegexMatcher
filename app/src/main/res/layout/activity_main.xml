@@ -52,7 +52,7 @@
     <ListView
         android:id="@+id/resultListBox"
         android:layout_width="match_parent"
-        android:layout_height="253dp" />
+        android:layout_height="234dp" />
 
     <Button
         android:id="@+id/checkButton"
