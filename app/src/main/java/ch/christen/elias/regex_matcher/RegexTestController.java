@@ -1,11 +1,15 @@
 package ch.christen.elias.regex_matcher;
 
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,33 +19,21 @@ import java.util.List;
  * Created by Christen on 13.12.2017.
  */
 
-class RegexTestController extends AppCompatActivity {
+class RegexTestController {
+    Regex regex;
+    public RegexTestController(Regex regex) {
+        this.regex = regex;
+    }
 
     public void checkRegex() {
-        if(checkIfTextFieldNotEmpty()){
-            ListView textViewRegex = (ListView) findViewById(R.id.resultListBox);
-            final List<String> fruits_list = new ArrayList<String>();
+        if (checkIfTextFieldNotEmpty()) {
 
-            // Create an ArrayAdapter from List
-            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
-                    (this, android.R.layout.simple_list_item_1, fruits_list);
-
-            // DataBind ListView with items from ArrayAdapter
-            textViewRegex.setAdapter(arrayAdapter);
-            fruits_list.add("Loquat");
-            arrayAdapter.notifyDataSetChanged();
 
         }
     }
 
     private boolean checkIfTextFieldNotEmpty() {
-        View inflatedView = getLayoutInflater().inflate(R.layout.activity_main, null);
-        TextView textViewText = (TextView) inflatedView.findViewById(R.id.textTextBox);
-        TextView textViewRegex = (TextView) inflatedView.findViewById(R.id.regexTextBox);
-        Log.d("Ich bin da","sdsds");                                            //Doesnt Work
-        String textRegex=   textViewRegex.getText().toString();
-        String textText=   textViewText.getText().toString();
-        return !textRegex.isEmpty()&& !textText.isEmpty();
+        return !regex.getRegexText().isEmpty() && !regex.getTextText().isEmpty();
     }
 
 

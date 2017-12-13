@@ -2,9 +2,11 @@ package ch.christen.elias.regex_matcher;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -21,14 +23,18 @@ public class MainActivity extends AppCompatActivity {
         checkIfButtonClicked();
 
 
-
     }
 
     private void checkIfButtonClicked() {
         final Button button = findViewById(R.id.checkButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               new RegexTestController().checkRegex();
+                TextView textViewText = (TextView) findViewById(R.id.textTextBox);
+                TextView textViewRegex = (TextView) findViewById(R.id.regexTextBox);
+                Spinner spinnerDropdown = (Spinner) findViewById(R.id.dropdownFlag);
+                ListView listViewResult= (ListView)findViewById(R.id.resultListBox);
+                new RegexTestController(new Regex(textViewText,textViewRegex,spinnerDropdown,listViewResult)).checkRegex();
+
             }
         });
     }
@@ -45,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, stringList);
         s.setAdapter(adapter);
     }
-
 
 
 }
