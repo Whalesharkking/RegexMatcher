@@ -15,20 +15,24 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Christen on 13.12.2017.
- */
 
-class RegexTestController {
-    Regex regex;
-    public RegexTestController(Regex regex) {
+
+class RegexTestController  {
+    private Regex regex;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> arrayList;
+
+     RegexTestController(Regex regex, ArrayList<String> arrayList, ArrayAdapter<String> adapter) {
         this.regex = regex;
+        this.arrayList=arrayList;
+        this.adapter=adapter;
     }
 
-    public void checkRegex() {
+    void checkRegex() {
         if (checkIfTextFieldNotEmpty()) {
-
-
+            arrayList.add("hallo");
+            // next thing you have to do is check if your adapter has changed
+            adapter.notifyDataSetChanged();
         }
     }
 
