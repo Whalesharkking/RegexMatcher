@@ -18,8 +18,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fillDropDown();
-        Button b = findViewById(R.id.checkButton);
+        checkIfButtonClicked();
 
+
+
+    }
+
+    private void checkIfButtonClicked() {
+        final Button button = findViewById(R.id.checkButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+               new RegexTestController().checkRegex();
+            }
+        });
     }
 
     private void fillDropDown() {
@@ -34,10 +45,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, stringList);
         s.setAdapter(adapter);
     }
-    public void onClick(View v) {
-        if (v.getId()==R.id.checkButton) {
-        new RegexTestController().checkRegex();     //does not work
-        }
-    }
+
+
 
 }

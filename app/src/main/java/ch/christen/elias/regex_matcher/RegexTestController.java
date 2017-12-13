@@ -1,8 +1,10 @@
 package ch.christen.elias.regex_matcher;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,8 +35,10 @@ class RegexTestController extends AppCompatActivity {
     }
 
     private boolean checkIfTextFieldNotEmpty() {
-        TextView textViewRegex = (TextView) findViewById(R.id.regexTextBox);
-        TextView textViewText = (TextView) findViewById(R.id.textTextBox);
+        View inflatedView = getLayoutInflater().inflate(R.layout.activity_main, null);
+        TextView textViewText = (TextView) inflatedView.findViewById(R.id.textTextBox);
+        TextView textViewRegex = (TextView) inflatedView.findViewById(R.id.regexTextBox);
+        Log.d("Ich bin da","sdsds");                                            //Doesnt Work
         String textRegex=   textViewRegex.getText().toString();
         String textText=   textViewText.getText().toString();
         return !textRegex.isEmpty()&& !textText.isEmpty();
