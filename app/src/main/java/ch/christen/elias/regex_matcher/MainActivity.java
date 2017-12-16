@@ -29,12 +29,7 @@ public class MainActivity extends AppCompatActivity {
         checkIfButtonClicked();
         list =  findViewById(R.id.resultListBox);
         arrayList = new ArrayList<>();
-
-        // Adapter: You need three parameters 'the context, id of the layout (it will be where the data is shown),
-        // and the array that contains the data
         adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
-
-        // Here, you set the data in your ListView
         list.setAdapter(adapter);
     }
 
@@ -46,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView textViewText =  findViewById(R.id.textTextBox);
                 TextView textViewRegex =  findViewById(R.id.regexTextBox);
                 Spinner spinnerDropdown =  findViewById(R.id.dropdownFlag);
-                ListView  listViewResult =  findViewById(R.id.resultListBox);
-                new RegexTestController(new Regex(textViewText, textViewRegex, spinnerDropdown, listViewResult),arrayList,adapter).checkRegex();
+                new RegexTestHarness(new Regex(textViewText, textViewRegex, spinnerDropdown),arrayList,adapter).checkRegex();
 
             }
         });
@@ -57,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         Spinner s = findViewById(R.id.dropdownFlag);
         Flag[] values = Flag.values();
         List<String> stringList = new ArrayList<>();
-        stringList.add("None");
         for (int i = 0; i <= Flag.values().length - 1; i++) {
             stringList.add(values[i].getFlagName());
         }

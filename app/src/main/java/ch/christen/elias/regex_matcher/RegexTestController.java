@@ -14,31 +14,50 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 class RegexTestController  {
-    private Regex regex;
-    private ArrayAdapter<String> adapter;
-    private ArrayList<String> arrayList;
+private String textFlag;
+private String textRegex;
+private String textString;
 
-     RegexTestController(Regex regex, ArrayList<String> arrayList, ArrayAdapter<String> adapter) {
-        this.regex = regex;
-        this.arrayList=arrayList;
-        this.adapter=adapter;
+     RegexTestController(Regex regex) {
+
+        this.textFlag=regex.getSelectedFlag();
+        this.textRegex=regex.getRegexText();
+        this.textString=regex.getTextText();
     }
 
-    void checkRegex() {
-        if (checkIfTextFieldNotEmpty()) {
-            arrayList.add("hallo");
-            // next thing you have to do is check if your adapter has changed
-            adapter.notifyDataSetChanged();
+     List<String> createPatternAndTestRegex() {
+        try {
+            if (!textFlag.contains("NONE")) {
+                for (final Flag flags : Flag.values()) {
+                    if (flags.getFlagName().equals(textFlag.toUpperCase())) {
+                        return createMatcherAnfFindMatches(textString, Pattern.compile(textRegex, flags.getPattern()));
+                    }
+                }
+            } else {
+                return createMatcherAnfFindMatches(textString, Pattern.compile(textRegex));
+            }
+        } catch (final Exception e) {
+            e.printStackTrace();
         }
+        return null;
     }
+    private List<String> createMatcherAnfFindMatches(final String text, final Pattern pattern) {
 
-    private boolean checkIfTextFieldNotEmpty() {
-        return !regex.getRegexText().isEmpty() && !regex.getTextText().isEmpty();
+        return matcherFind( pattern.matcher(text));
     }
-
-
+    private List<String> matcherFind(final Matcher matcher) {
+        final List<String> matcherList = new ArrayList<>();
+        while (matcher.find()) {
+            matcherList.add(getResults(matcher));
+        }
+        return matcherList;
+    }
+    private String getResults(final Matcher matcher) {
+        return "I found the text " + matcher.group() + " starting at index " + matcher.start() + " and ending at index " + matcher.end();
+    }
 }

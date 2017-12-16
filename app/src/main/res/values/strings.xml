@@ -4,4 +4,6 @@
     <string name="textString">Text</string>
     <string name="flagString">Flags</string>
     <string name="CheckButtonText">Check</string>
+    <string name="regexExampleString">z.B. [a-zA-Z]</string>
+    <string name="textTextExample">z.B. abCdEfg</string>
 </resources>
