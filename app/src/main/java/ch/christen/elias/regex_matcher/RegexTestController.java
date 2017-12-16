@@ -12,7 +12,6 @@ class RegexTestController {
     private String textString;
 
     RegexTestController(Regex regex) {
-
         this.textFlag = regex.getSelectedFlag();
         this.textRegex = regex.getRegexText();
         this.textString = regex.getTextText();
