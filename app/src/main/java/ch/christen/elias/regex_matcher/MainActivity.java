@@ -2,11 +2,9 @@ package ch.christen.elias.regex_matcher;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         fillDropDown();
         checkIfButtonClicked();
-        list =  findViewById(R.id.resultListBox);
+        list = findViewById(R.id.resultListBox);
         arrayList = new ArrayList<>();
         adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
         list.setAdapter(adapter);
@@ -38,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                TextView textViewText =  findViewById(R.id.textTextBox);
-                TextView textViewRegex =  findViewById(R.id.regexTextBox);
-                Spinner spinnerDropdown =  findViewById(R.id.dropdownFlag);
-                new RegexTestHarness(new Regex(textViewText, textViewRegex, spinnerDropdown),arrayList,adapter).checkRegex();
+                TextView textViewText = findViewById(R.id.textTextBox);
+                TextView textViewRegex = findViewById(R.id.regexTextBox);
+                Spinner spinnerDropdown = findViewById(R.id.dropdownFlag);
+                new RegexTestHarness(new Regex(textViewText, textViewRegex, spinnerDropdown), arrayList, adapter).checkRegex();
 
             }
         });

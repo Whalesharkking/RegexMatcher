@@ -1,11 +1,9 @@
 package ch.christen.elias.regex_matcher;
 
-import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 class RegexTestHarness {
     private Regex regex;
@@ -23,16 +21,19 @@ class RegexTestHarness {
         if (checkIfTextFieldNotEmpty()) {
             controller = new RegexTestController(regex);
             List<String> resultList = controller.createPatternAndTestRegex();
-
             addResultToResultListView(resultList);
         }
     }
 
     private void addResultToResultListView(List<String> resultList) {
         adapter.clear();
+        if (resultList.isEmpty()) {
+            resultList.add("No match found!");
+        }
         arrayList.addAll(resultList);
         adapter.notifyDataSetChanged();
     }
+
 
     private boolean checkIfTextFieldNotEmpty() {
         return !regex.getRegexText().isEmpty() && !regex.getTextText().isEmpty();
